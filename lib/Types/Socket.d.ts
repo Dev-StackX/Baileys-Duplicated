@@ -1,6 +1,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { AxiosRequestConfig } from 'axios';
+import { request } from 'undici';
+type RequestOptions = Parameters<typeof request>[1];
 import type { Agent } from 'https';
 import type { URL } from 'url';
 import { proto } from '../../WAProto';
@@ -105,7 +106,7 @@ export type SocketConfig = {
         snapshot: boolean;
     };
     /** options for axios */
-    options: AxiosRequestConfig<{}>;
+    options: RequestOptions;
     /**
      * fetch a message from your store
      * implement this so that messages failed to send

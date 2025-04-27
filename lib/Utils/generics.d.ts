@@ -1,6 +1,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { AxiosRequestConfig } from 'axios';
+import { request } from 'undici';
+type RequestOptions = Parameters<typeof request>[1];
 import { proto } from '../../WAProto';
 import { BaileysEventEmitter, BaileysEventMap, BrowsersMap, ConnectionState, WACallUpdateType, WAVersion } from '../Types';
 import { BinaryNode } from '../WABinary';
@@ -42,7 +43,7 @@ export declare const printQRIfNecessaryListener: (ev: BaileysEventEmitter, logge
  * utility that fetches latest baileys version from the master branch.
  * Use to ensure your WA connection is always on the latest version
  */
-export declare const fetchLatestBaileysVersion: (options?: AxiosRequestConfig<{}>) => Promise<{
+export declare const fetchLatestBaileysVersion: (options?: RequestOptions) => Promise<{
     version: WAVersion;
     isLatest: boolean;
     error?: undefined;
@@ -55,7 +56,7 @@ export declare const fetchLatestBaileysVersion: (options?: AxiosRequestConfig<{}
  * A utility that fetches the latest web version of whatsapp.
  * Use to ensure your WA connection is always on the latest version
  */
-export declare const fetchLatestWaWebVersion: (options: AxiosRequestConfig<{}>) => Promise<{
+export declare const fetchLatestWaWebVersion: (options: RequestOptions) => Promise<{
     version: WAVersion;
     isLatest: boolean;
     error?: undefined;

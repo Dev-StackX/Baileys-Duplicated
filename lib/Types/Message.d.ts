@@ -2,7 +2,8 @@
 /// <reference types="node" />
 /// <reference types="node" />
 /// <reference types="node" />
-import { AxiosRequestConfig } from 'axios';
+import { request } from 'undici';
+type RequestOptions = Parameters<typeof request>[1];
 import type { Readable } from 'stream';
 import type { URL } from 'url';
 import { proto } from '../../WAProto';
@@ -266,7 +267,7 @@ export type MediaGenerationOptions = {
     /** cache media so it does not have to be uploaded again */
     mediaCache?: CacheStore;
     mediaUploadTimeoutMs?: number;
-    options?: AxiosRequestConfig;
+    options?: RequestOptions;
     backgroundColor?: string;
     font?: number;
 };

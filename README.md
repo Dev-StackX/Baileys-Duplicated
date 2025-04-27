@@ -1,5 +1,4 @@
 
-# Baileys-Duplicated
 ![Baileys-Duplicated](https://raw.githubusercontent.com/Viper-x0/Viper-X0/refs/heads/main/lib/logo.png)
 
 ---

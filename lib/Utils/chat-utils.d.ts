@@ -1,6 +1,7 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import { AxiosRequestConfig } from 'axios';
+import { request } from 'undici';
+type RequestOptions = Parameters<typeof request>[1];
 import { proto } from '../../WAProto';
 import { BaileysEventEmitter, ChatModification, ChatMutation, Contact, InitialAppStateSyncOptions, LTHashState, WAPatchCreate, WAPatchName } from '../Types';
 import { BinaryNode } from '../WABinary';
@@ -30,7 +31,7 @@ export declare const decodeSyncdPatch: (msg: proto.ISyncdPatch, name: WAPatchNam
         };
     };
 }>;
-export declare const extractSyncdPatches: (result: BinaryNode, options: AxiosRequestConfig<{}>) => Promise<{
+export declare const extractSyncdPatches: (result: BinaryNode, options: RequestOptions) => Promise<{
     critical_block: {
         patches: proto.ISyncdPatch[];
         hasMorePatches: boolean;
@@ -57,16 +58,16 @@ export declare const extractSyncdPatches: (result: BinaryNode, options: AxiosReq
         snapshot?: proto.ISyncdSnapshot | undefined;
     };
 }>;
-export declare const downloadExternalBlob: (blob: proto.IExternalBlobReference, options: AxiosRequestConfig<{}>) => Promise<Buffer>;
-export declare const downloadExternalPatch: (blob: proto.IExternalBlobReference, options: AxiosRequestConfig<{}>) => Promise<proto.SyncdMutations>;
+export declare const downloadExternalBlob: (blob: proto.IExternalBlobReference, options: RequestOptions) => Promise<Buffer>;
+export declare const downloadExternalPatch: (blob: proto.IExternalBlobReference, options: RequestOptions) => Promise<proto.SyncdMutations>;
 export declare const decodeSyncdSnapshot: (name: WAPatchName, snapshot: proto.ISyncdSnapshot, getAppStateSyncKey: FetchAppStateSyncKey, minimumVersionNumber: number | undefined, validateMacs?: boolean) => Promise<{
     state: LTHashState;
     mutationMap: ChatMutationMap;
 }>;
-export declare const decodePatches: (name: WAPatchName, syncds: proto.ISyncdPatch[], initial: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, options: AxiosRequestConfig<{}>, minimumVersionNumber?: number, logger?: ILogger, validateMacs?: boolean) => Promise<{
+export declare const decodePatches: (name: WAPatchName, syncds: proto.ISyncdPatch[], initial: LTHashState, getAppStateSyncKey: FetchAppStateSyncKey, options: RequestOptions, minimumVersionNumber?: number, logger?: ILogger, validateMacs?: boolean) => Promise<{
     state: LTHashState;
     mutationMap: ChatMutationMap;
 }>;
 export declare const chatModificationToAppPatch: (mod: ChatModification, jid: string) => WAPatchCreate;
 export declare const processSyncAction: (syncAction: ChatMutation, ev: BaileysEventEmitter, me: Contact, initialSyncOpts?: InitialAppStateSyncOptions, logger?: ILogger) => void;
-export {};
+export { };

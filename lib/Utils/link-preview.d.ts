@@ -1,13 +1,14 @@
-import { AxiosRequestConfig } from 'axios';
+import { request } from 'undici';
+type RequestOptions = Parameters<typeof request>[1];
 import { WAMediaUploadFunction, WAUrlInfo } from '../Types';
 import { ILogger } from './logger';
 export type URLGenerationOptions = {
     thumbnailWidth: number;
-    fetchOpts: {
+    fetchOpts: Omit<RequestOptions, 'origin' | 'path' | 'method'> & {
         /** Timeout in ms */
         timeout: number;
         proxyUrl?: string;
-        headers?: AxiosRequestConfig<{}>['headers'];
+        headers?: RequestOptions['headers'];
     };
     uploadImage?: WAMediaUploadFunction;
     logger?: ILogger;
